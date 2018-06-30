@@ -1,5 +1,7 @@
 #encoding: UTF-8
 
+class GraduationCode < ApplicationController
+def GraduationJudgement
 require 'csv'
 
 print("主専攻を入力して下さい\n")
@@ -73,6 +75,10 @@ print(syuutoku, "\n")
 
 sa = 0
 borderline.each do |key, value|
+  if syuutoku[key] > value
+    tmp = syuutoku[key] - value
+    jiyuu += tmp
+  end  
 	if syuutoku[key] >= value
 		print(key, "はOK\n")
 	else
@@ -82,6 +88,7 @@ borderline.each do |key, value|
 	end
 end
 
-print("自由科目は、", ziyuukamoku, "単位です\n")
+print("自由科目は、", jiyuu, "単位です\n")
 print("総単位数は、", soutannisuu, "単位です\n")
 
+end
